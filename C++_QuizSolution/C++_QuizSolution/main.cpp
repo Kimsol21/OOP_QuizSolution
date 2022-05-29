@@ -2,44 +2,31 @@
 
 using namespace std;
 
-void swap(int* num1, int* num2);
-void swap(char* ch1, char* ch2);
-void swap(double* dbl1, double* dbl2);
+typedef struct __Point
+{
+	int xpos;
+	int ypos;
+}Point;
+
+Point& PntAdder(const Point& p1, const Point& p2);
 
 int main()
 {
-	int num1 = 20, num2 = 30;
-	swap(&num1, &num2);
-	cout << num1 <<endl<< num2 << endl;
+	//임의의 두 점 선언.
+	Point* pointPtr1 = new Point;
+	*pointPtr1 = { 5,2 };
 
-	char ch1 = 'A', ch2 = 'Z';
-	swap(&ch1, &ch2);
-	cout << ch1 <<endl<< ch2 << endl;
+	Point* pointPtr2 = new Point;
+	*pointPtr2 = { 8,9 };
 
-	double dbl1 = 1.111, dbl2 = 5.555;
-	swap(&dbl1, &dbl2);
-	cout << dbl1 <<endl<< dbl2 << endl;
+	Point result = PntAdder(*pointPtr1, *pointPtr2);// 두 점의 값 더하기.
+	cout << result.xpos << endl << result.ypos << endl; //결과 출력.
 
 	return 0;
 }
 
-void swap(int* num1, int* num2)
+Point& PntAdder(const Point& p1, const Point& p2)
 {
-	int temp = *num1;
-	*num1 = *num2;
-	*num2 = temp;
-}
-
-void swap(char* ch1, char* ch2)
-{
-	char temp = *ch1;
-	*ch1 = *ch2;
-	*ch2 = temp;
-}
-
-void swap(double* dbl1, double* dbl2)
-{
-	double temp = *dbl1;
-	*dbl1 = *dbl2;
-	*dbl2 = temp;
+	Point pnt = { p1.xpos + p2.xpos, p1.ypos + p2.ypos };
+	return pnt;
 }
